@@ -1,0 +1,13 @@
+id = "herdr.muse-restore"
+name = "Muse Restore"
+version = "0.1.0"
+min_herdr_version = "0.6.10"
+platforms = ["linux", "macos"]
+description = "Relaunch Muse sessions whose panes Herdr restored as bare shells after a server restart"
+
+# Runs once at Herdr server start, after the session snapshot has been
+# restored and the API socket is listening. Reads the pane/session bindings
+# maintained by herdr-muse.py and relaunches each Muse session in its pane via
+# `agent start --kind muse --pane <id> -- resume <session>`.
+[[startup]]
+command = ["python3", "restore.py"]
